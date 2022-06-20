@@ -30,11 +30,12 @@ require __DIR__.'/auth.php';
 // Route::get('/{id}/edit', [SortieController::class, 'edit']);
 // Route::get('/{id}/update', [SortieController::class, 'update'])->name('sorties.update');
 Route::resource('sortie', SortieController::class);
+// Route::delete('/sortie/{id}', [SortieController::class, 'destroy'])->name('sortie.destroy');
 
 Route::get('/profils/profil', [UserController::class, 'create']);
 Route::post('/profils/profil', [UserController::class, 'userSend']);
 
-Route::get('campus/create', [CampusController::class, 'create']);
+Route::get('campus/create', [CampusController::class, 'create'])->name('campus.create');
 Route::post('campus/create', [CampusController::class, 'campusSend']);
 
 Route::delete('campus/{id}', [CampusController::class, 'destroy'])->name('campus.destroy');

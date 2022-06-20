@@ -12,9 +12,7 @@
 
     <p style="display:none">{{ $villes = App\Models\Ville::all() }}</p>
 
-    @if (session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+
 
     <h5>Filtrer les villes</h5>
 

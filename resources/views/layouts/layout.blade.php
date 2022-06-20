@@ -22,7 +22,7 @@
     </head>
     <body class="font-sans antialiased">
         <div class="py-12">
-            <h1><a href="../dashboard"><img src="css/img/icon.png" alt="OnSort"></a></h1>
+            <h1><a href="{{ route("dashboard") }}"><img src="{{ asset('css/img/icon.png')}}" alt="OnSort"></a></h1>
 
             <nav>
                 <ul>
@@ -37,6 +37,10 @@
                     </form>
                 </ul>
             </nav>
+            @dump(session()->all());
+            @if (session('success'))
+            <p>{{ session('success') }}</p>
+        @endif
         <div class="container">
             @yield('content')
         </div>

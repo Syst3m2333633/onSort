@@ -4,9 +4,9 @@
 
 <h3>Afficher une sortie</h3>
 
-<form method="GET">
+<form method="POST" action="{{ route('sortie.update', ['sortie' => $sortie->id]) }}">
     @csrf
-    @method('GET')
+    @method('PUT')
 
 <label for="name">Nom de la sortie : </label>
 <input tpe="text" name="name" id="name" placeholder="{{ $sortie->name }}"/><br>
@@ -38,17 +38,17 @@
 <input type="text" name="latitude" id="latitude" placeholder="{{ $sortie->lieu->latitude }}"/><br>
 <label for="longitude">Longitude : </label>
 <input type="text" name="longitude" id="longitude" placeholder="{{ $sortie->lieu->longitude }}"/><br>
+<input type="submit" value="Enregistrer">
+</form>
 
-
-<a href="{{ route('sortie.update', $sortie->id) }}">Enregistrer</a>
 <a href="{{ route('sortie.store', $sortie->id) }}">Publier la sortie</a>
 <form action="{{ route('sortie.destroy', $sortie->id) }}" method="POST">
     @csrf
     @method('DELETE')
-    <a href="{{ route('sortie.destroy', $sortie->id) }}">Supprimer la sortie</a>
+    <input type="submit" value="Supprimer la sortie"/>
     {{-- <button type="submit">Supprimer</button> --}}
 </form>
 {{-- <a href="{{ route('sortie.destroy', $sortie->id) }}">Supprimer la sortie</a> --}}
 <a href="{{ route('dashboard') }}">Annuler</a>
-</form>
+
 @endsection

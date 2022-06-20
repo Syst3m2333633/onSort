@@ -177,10 +177,10 @@ class SortieController extends Controller
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function destroy($id)
+    public function destroy(Sortie $sortie)
     {
-        $sortie = Sortie::find($id);
+        // $sortie = Sortie::find($id);
         $sortie->delete();
-        return redirect()->route('sorties.edit')->with('success', 'Sortie supprimée');
+        return redirect(route('dashboard'))->with('success', 'Sortie supprimée');
     }
 }

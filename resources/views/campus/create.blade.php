@@ -1,4 +1,4 @@
-@extends('Layouts.layout')
+@extends('layouts.layout')
 
 @section('content')
 
@@ -12,9 +12,7 @@
 
     <p style="display:none">{{ $campuses = App\Models\Campus::all() }}</p>
 
-    @if (session('success'))
-        <p>{{ session('success') }}</p>
-    @endif
+
 
     <h5>Filtrer les sites</h5>
 
@@ -35,14 +33,14 @@
                 <tr>
                     <td>{{ $campus->name }}</td>
                     <td>
-                        <form method="POST" action="{{ $campus->id }}">
+                        <form method="POST" action="{{ route('campus.destroy', ['id' => $campus->id]) }}">
                             @csrf
                             @method('DELETE')
                             <button type="submit" class="btn btn-danger">Supprimer</button>
                         </form>
                         <form method="POST" action="{{ $campus->id }}/edit">
                             @csrf
-                            @method('UPDATE')
+                            @method('PUT')
                             <button type="submit" class="btn btn-primary">Modifier</button>
                         </form>
                     </td>

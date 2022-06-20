@@ -92,8 +92,9 @@ class CampusController extends Controller
      */
     public function destroy($id)
     {
+        // dd($id);
         $campus = Campus::find($id);
         $campus->delete();
-        return view('campus.create')->with('sucess', 'Campus supprimé');
+        return redirect(route('campus.create'))->with('success', 'Campus supprimé');
     }
 }
