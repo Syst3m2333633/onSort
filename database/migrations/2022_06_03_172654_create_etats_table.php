@@ -15,7 +15,7 @@ class CreateEtatsTable extends Migration
     {
         Schema::create('etats', function (Blueprint $table) {
             $table->id();
-            $table->string('libelle');
+            $table->enum('libelle', ['Ouverte', 'Clôturée', 'En cours', 'Passée', 'Annulée'])->default('Ouverte');
             $table->timestamps();
         });
     }

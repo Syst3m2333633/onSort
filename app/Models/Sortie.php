@@ -7,6 +7,12 @@ use Illuminate\Database\Eloquent\Model;
 
 class Sortie extends Model
 {
+
+    protected $fillable = [
+        'name', 'dateHeureDebut', 'dateLimiteInscription', 'duree', 'nbInscriptionMax', 'infoSortie', 'campus_id', 'rue', 'codePostal', 'latitude', 'longitude'
+    ];
+
+
     use HasFactory;
 
     //Relation entre Sortie et Lieu

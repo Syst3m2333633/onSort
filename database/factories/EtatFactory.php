@@ -14,7 +14,7 @@ class EtatFactory extends Factory
     public function definition()
     {
         return [
-            'libelle' => $this->faker->name,
+            'libelle' => $this->faker->randomElement(['Ouverte', 'Clôturée', 'En cours', 'Passée', 'Annulée']),
         ];
     }
 }

@@ -16,7 +16,7 @@ class SortieFactory extends Factory
 
     /**
      * Define the model's default state.
-     *
+     * @param int|null $nbDigits
      * @return array
      */
     public function definition()
@@ -26,10 +26,10 @@ class SortieFactory extends Factory
         'dateHeureDebut'  => $this->faker->dateTime,
         'duree'  => $this->faker->randomNumber,
         'dateLimiteInscription'  => $this->faker->dateTime,
-        'nbInscriptionMax'  => $this->faker->randomNumber,
+        'nbInscriptionMax'  => $this->faker->randomNumber(1,100),
         'infoSortie'  => $this->faker->text,
         'photo'  => $this->faker->imageUrl,
-        'etat' => \App\Models\Etat::factory()->create()->id,
+        'etat' => $this->faker->randomElement(['Ouverte', 'Clôturée', 'En cours', 'Passée', 'Annulée']),
         'campus_id' => \App\Models\Campus::factory()->create()->id,
         'user_id' => \App\Models\User::factory()->create()->id,
         'lieu_id' => \App\Models\Lieu::factory()->create()->id,

@@ -22,15 +22,17 @@ class CreateSortiesTable extends Migration
             $table->string('nbInscriptionMax');
             $table->text('infoSortie');
             $table->binary('photo')->nullable();
-            $table->string('etat');
+            $table->enum('etat', ['Ouverte', 'Clôturée', 'En cours', 'Passée', 'Annulée'])->default('Ouverte');
             $table->unsignedInteger('lieu_id');
-            $table->foreign('lieu_id')->references('id')->on('lieus');
-            $table->unsignedInteger('campus_id');
-            $table->foreign('campus_id')->references('id')->on('campuses');
-            $table->unsignedInteger('user_id');
-            $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('lieu_id')->references('id')->on('lieus')->onDelete('cascade');
+            // $table->unsignedInteger('campus_id');
+            // $table->foreign('campus_id')->references('id')->on('campuses')->onDelete('cascade');
+            $table->foreignIdFor(Campus::class)->constrained();
+            $table->foreignIdFor(User::class)->constrained();
+            // $table->unsignedInteger('user_id');
+            // $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->unsignedInteger('Etat_id');
-            $table->foreign('Etat_id')->references('id')->on('etats');
+            $table->foreign('Etat_id')->references('id')->on('etats')->onDelete('cascade');
             $table->timestamps();
         });
     }
@@ -42,6 +44,12 @@ class CreateSortiesTable extends Migration
      */
     public function down()
     {
+        Schema::table('sorties', function(Blueprint $table) {
+            $table->dropForeign(['lieu_id']);
+            $table->dropForeign(['campus_id']);
+            $table->dropForeign(['user_id']);
+            $table->dropForeign(['Etat_id']);
+        });
         Schema::dropIfExists('sorties');
     }
 }
